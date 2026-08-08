@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-rift-void: #010a13;
+  --color-rift-deep: #091428;
+  --color-rift-panel: #0a1a2f;
+  --color-rift-line: #1e3a5f;
+
+  --color-gold-bright: #f0e6d2;
+  --color-gold: #c8aa6e;
+  --color-gold-dim: #785a28;
+
+  --color-teal: #0ac8b9;
+  --color-rift-blue: #0397ab;
+
+  --font-display: "Cinzel", ui-serif, Georgia, serif;
+}
+
+body {
+  background-color: var(--color-rift-void);
+  color: var(--color-gold-bright);
+}
+
+/* Thin gold scrollbar to match the hextech frame */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-rift-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dim);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
