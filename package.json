@@ -11,8 +11,8 @@
     "preview": "vite preview",
     "db:seed": "tsx api/scripts/seed.ts",
     "db:reset": "tsx api/scripts/reset.ts",
-    "db:full-reset": "npm run db:seed && npm run db:reset",
-    "db:studio": "drizzle-kit studio",
+    "db:full-reset": "npm run db:reset && npm run db:seed",
+    "db:studio": "drizzle-kit studio --config drizzle.config.ts",
     "api": "tsx api/index.ts"
   },
   "dependencies": {
@@ -31,7 +31,7 @@
     "@types/express": "^5.0.6",
     "@types/node": "^24.13.3",
     "@types/pg": "^8.20.2",
-    "@types/react": "^19.2.17",
+    "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "drizzle-kit": "^0.31.10",
