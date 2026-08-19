@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ChampionSearch } from "./components/ChampionSearch";
 import { ChampionCard } from "./components/ChampionCard";
 import { ChampionGrid } from "./components/ChampionGrid";
+import { PlaystyleFinder } from "./components/PlaystyleFinder";
 import { getAllChampions } from "./api";
 import type { Champion } from "./types/champion";
 
@@ -30,6 +31,14 @@ export const App = () => {
         champion.id.toLowerCase().includes(query),
     );
   }, [champions, search]);
+
+  const selectByName = (championName: string) => {
+    const match = champions.find(
+      (champion) =>
+        champion.name.toLowerCase() === championName.toLowerCase(),
+    );
+    if (match) setSelected(match);
+  };
 
   return (
     <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,var(--color-rift-deep),var(--color-rift-void)_60%)]">
@@ -75,6 +84,10 @@ export const App = () => {
 
         {!loading && !error && !selected && (
           <>
+            <div className="mb-8">
+              <PlaystyleFinder onSelectChampion={selectByName} />
+            </div>
+
             <p className="mb-4 text-xs tracking-[0.25em] text-gold-dim uppercase">
               {results.length} champion{results.length === 1 ? "" : "s"}
             </p>

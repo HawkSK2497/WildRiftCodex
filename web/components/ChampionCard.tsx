@@ -1,4 +1,5 @@
 import type { Champion } from "../types/champion";
+import { roleStyle } from "../lib/roleStyle";
 
 const ABILITY_ORDER = ["passive", "first", "second", "third", "ultimate"];
 
@@ -8,15 +9,6 @@ const ABILITY_LABEL: Record<string, string> = {
   second: "2",
   third: "3",
   ultimate: "ULT",
-};
-
-const ROLE_STYLE: Record<string, string> = {
-  FIGHTER: "border-red-400/50 text-red-300",
-  ASSASSIN: "border-fuchsia-400/50 text-fuchsia-300",
-  MAGE: "border-sky-400/50 text-sky-300",
-  MARKSMAN: "border-amber-400/50 text-amber-300",
-  SUPPORT: "border-emerald-400/50 text-emerald-300",
-  TANK: "border-slate-300/50 text-slate-200",
 };
 
 const SectionHeading = ({ children }: { children: string }) => (
@@ -63,9 +55,9 @@ export const ChampionCard = ({ champion }: { champion: Champion }) => {
 
             <div className="mt-2 flex flex-wrap items-center gap-3">
               <span
-                className={`border px-3 py-1 text-xs tracking-[0.2em] uppercase ${
-                  ROLE_STYLE[champion.role] ?? "border-gold-dim/50 text-gold"
-                }`}
+                className={`border px-3 py-1 text-xs tracking-[0.2em] uppercase ${roleStyle(
+                  champion.role,
+                )}`}
               >
                 {champion.role}
               </span>

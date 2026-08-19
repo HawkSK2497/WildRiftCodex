@@ -26,3 +26,10 @@ export type Champion = {
   abilities: Ability[];
   skins: Skin[];
 };
+
+export type Playstyle = {
+  champion: string;
+  role: string;
+  playstyle: string;
+  imageUrl: string;
+};
