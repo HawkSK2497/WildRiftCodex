@@ -1,8 +1,13 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import express from "express";
 import { eq } from "drizzle-orm";
 import { db } from "./db/index";
 import { champions } from "./db/schema";
 import { getPlaystyle } from "./services/chat";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const distDir = path.resolve(__dirname, "../dist");
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -46,6 +51,13 @@ app.post("/api/playstyle", async (req, res) => {
     res.status(502).json({ error: "failed to generate a recommendation" });
   }
 });
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(distDir));
+  app.get(/^(?!\/api).*/, (_req, res) => {
+    res.sendFile(path.join(distDir, "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`api listening on http://localhost:${PORT}`);
